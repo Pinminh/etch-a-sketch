@@ -5,19 +5,55 @@
 }
 
 .container {
-}
+  width: 100dvw;
+  height: 90dvh;
 
-.grid-row {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.grid-element {
-  width: 50px;
-  height: 6.25dvh;
+.grid-row {
+  width: 100%;
 
-  background-color: darkgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   flex: auto;
+}
+
+.grid-element {
+  height: 100%;
+
+  flex: auto;
+}
+
+.header {
+  height: 10dvh;
+  background-color: lightskyblue;
+
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.header button {
+  width: 20%;
+
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-align: center;
+
+  background-color: lightskyblue;
+  border: 1px solid white;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.header button:hover {
+  transform: scale(1.1);
+  background-color: rgb(130, 207, 255);
 }
