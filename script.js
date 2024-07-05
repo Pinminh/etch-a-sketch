@@ -1,3 +1,11 @@
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randColor() {
+  return `rgb(${randInt(0, 255)}, ${randInt(0, 255)}, ${randInt(0, 255)})`;
+}
+
 const container = document.querySelector(".container");
 
 const createSketch = (numRows, numCols) => {
@@ -20,9 +28,27 @@ const deleteSketch = () => {
   container.innerHTML = "";
 }
 
+const INTIAL_COLOR_OPACITY = 0.1;
+const COLOR_OPACITY_INCREMENT = 0.1;
+
+let previousPixel = null;
+
 const addGridColor = (event) => {
-  if (!event.target.classList.contains("grid-element")) return;
-  event.target.style.backgroundColor = "black";
+  let pixel = event.target;
+  if (!pixel.classList.contains("grid-element")) return;
+  if (pixel.style.backgroundColor && pixel.style.opacity >= 1) return;
+
+  if (pixel === previousPixel) return;
+
+  if (!pixel.style.backgroundColor) {
+    pixel.style.backgroundColor = randColor();
+    pixel.style.opacity = INTIAL_COLOR_OPACITY;
+  } else {
+    let oldOpacity = Number(pixel.style.opacity);
+    pixel.style.opacity = oldOpacity + COLOR_OPACITY_INCREMENT;
+  }
+
+  previousPixel = pixel;
 }
 
 const createCustomizedSketch = (event) => {
